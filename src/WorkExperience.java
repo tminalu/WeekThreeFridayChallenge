@@ -1,24 +1,25 @@
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class WorkExperience {
 
-    private String company;
-    private String jobTitle;
-    private ArrayList<String> jobDescription;
-    private String startDate;
-    private String endDate;
+    String jobTitle;
+    String company;
+    String startDate;
+    String endDate;
+    String jobDescription;
 
-    public WorkExperience() {
+    HashSet<WorkExperience> workExperiences;
 
+    public WorkExperience(){
+        workExperiences = new HashSet<>();
     }
 
-    public WorkExperience(String company, String jobTitle, ArrayList<String> jobdescription, String startDate, String endDate) {
-        this.company = company;
+    public WorkExperience(String jobTitle, String company, String startDate, String endDate, String jobDescription) {
         this.jobTitle = jobTitle;
-        this.jobDescription = jobdescription;
+        this.company = company;
         this.startDate = startDate;
         this.endDate = endDate;
-
+        this.jobDescription = jobDescription;
     }
 
     public String getCompany() {
@@ -37,14 +38,6 @@ public class WorkExperience {
         this.jobTitle = jobTitle;
     }
 
-    public ArrayList<String> getJobDescription() {
-        return jobDescription;
-    }
-
-    public void setJobDescription(ArrayList<String> jobDescription) {
-        this.jobDescription = jobDescription;
-    }
-
     public String getStartDate() {
         return startDate;
     }
@@ -61,9 +54,31 @@ public class WorkExperience {
         this.endDate = endDate;
     }
 
-    @Override
-    public String toString() {
+    public String getJobDescription() {
+        return jobDescription;
+    }
 
-        return ("Experience \n" + jobTitle + "\n" + company + ", " + startDate + " - " + endDate + "\n");
+    public void setJobDescription(String jobDescription) {
+        this.jobDescription = jobDescription;
+    }
+
+    public HashSet<WorkExperience> getWorkExperiences() {
+        return workExperiences;
+    }
+
+    public void setWorkExperiences(HashSet<WorkExperience> workExperiences) {
+        this.workExperiences = workExperiences;
+    }
+
+    public void addExperience(WorkExperience workExperience){
+        workExperiences.add(workExperience);
+    }
+
+    public void displayExperience(){
+        for(WorkExperience wExperience : this.getWorkExperiences()){
+            System.out.println("\n" + wExperience.getJobTitle()+ " \n" + wExperience.getCompany()+ ", \t" +
+                    wExperience.getStartDate() + " - " + wExperience.getEndDate() + "\n" +
+                    wExperience.getJobDescription());
+        }
     }
 }
